@@ -1,45 +1,110 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from 'expo-router'
+import i18n from '@/locales'
+import { useColorScheme, StyleSheet } from 'react-native'
+import { Colors } from '@/constants/Colors'
+import { FontSize } from '@/constants/FontSize'
+import { BlurView } from 'expo-blur'
+import { FontAwesome, MaterialCommunityIcons, Ionicons, FontAwesome6 } from '@expo/vector-icons'
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const TabsLayout = () => {
+  const colorScheme = useColorScheme()
+  const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const blurBackgroundColor =
+    colorScheme === 'dark' ? 'rgba(18,18,18,0.7)' : 'rgba(255,255,255,0.7)'
+
+  // Ensure tint is always a valid value
+  const blurTint =
+    colorScheme === 'dark'
+      ? 'dark'
+      : colorScheme === 'light'
+      ? 'light'
+      : 'default'
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarActiveTintColor: theme.tabIconSelected,
+        tabBarInactiveTintColor: theme.tabIconDefault,
+        tabBarLabelStyle: styles.tabBarLabel,
+        tabBarStyle: styles.tabBar,
+        tabBarBackground: () => (
+          <BlurView
+            intensity={95}
+            tint={blurTint}
+            style={[styles.blur, { backgroundColor: blurBackgroundColor }]}
+          />
+        )
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="favorites"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: i18n.t('favorites'),
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="heart" size={28} color={color} />
+          )
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="playlists"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: i18n.t('playlists'),
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="playlist-play" size={28} color={color} />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="(songs)"
+        options={{
+          title: i18n.t('songs'),
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="musical-notes-sharp" size={24} color={color} />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="artists"
+        options={{
+          title: i18n.t('artists'),
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="users-line" size={20} color={color} />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: i18n.t('settings'),
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="settings-sharp" size={22} color={color} />
+          )
         }}
       />
     </Tabs>
-  );
+  )
 }
+
+const styles = StyleSheet.create({
+  blur: {
+    ...StyleSheet.absoluteFillObject,
+    overflow: 'hidden',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  tabBar: {
+    position: 'absolute',
+    borderTopWidth: 0,
+    backgroundColor: 'transparent',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  tabBarLabel: {
+    fontSize: FontSize.xs,
+    fontWeight: '500'
+  }
+})
+
+export default TabsLayout
