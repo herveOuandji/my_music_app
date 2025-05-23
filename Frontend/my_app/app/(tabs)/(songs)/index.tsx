@@ -1,5 +1,6 @@
-import { View, Text, useColorScheme } from 'react-native'
+import { View, useColorScheme, ScrollView } from 'react-native'
 import { defaultStyles } from '@/styles'
+import TracksList from '@/app/components/TracksList'
 
 const SongsScreen = () => {
   const colorScheme = useColorScheme()
@@ -8,7 +9,9 @@ const SongsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Songs List will appear here.</Text>
+      <ScrollView>
+        <TracksList scrollEnabled={false} />
+      </ScrollView>
     </View>
   )
 }

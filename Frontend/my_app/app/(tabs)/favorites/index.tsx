@@ -8,7 +8,7 @@ const FavoriteScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Favorite List will appear here.</Text>
+      {/* <Text style={styles.text}>Favorite List will appear here.</Text> */}
     </View>
   )
 }

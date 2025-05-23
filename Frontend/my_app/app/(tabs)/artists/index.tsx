@@ -8,7 +8,7 @@ const ArtistScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Artist List will appear here.</Text>
+      {/* <Text style={styles.text}>Artist List will appear here.</Text> */}
     </View>
   )
 }

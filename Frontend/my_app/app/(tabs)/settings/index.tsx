@@ -7,8 +7,7 @@ const SettingScreen = () => {
   const styles = defaultStyles(isDarkMode)
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Setting List will appear here.</Text>
+    <View style={styles.container}> 
     </View>
   )
 }

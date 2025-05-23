@@ -7,8 +7,7 @@ const PlaylistScreen = () => {
   const styles = defaultStyles(isDarkMode)
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Playlist List will appear here.</Text>
+    <View style={styles.container}> 
     </View>
   )
 }

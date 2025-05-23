@@ -2,6 +2,7 @@ import { Stack } from 'expo-router'
 import { View, useColorScheme } from 'react-native'
 import { defaultStyles } from '@/styles'
 import i18n from '@/locales'
+import useStackScreenWithSearchBar from '@/constants/layout'
 
 const ArtistScreenLayout = () => {
   const colorScheme = useColorScheme() // 'dark' or 'light'
@@ -14,8 +15,8 @@ const ArtistScreenLayout = () => {
         <Stack.Screen
           name="index"
           options={{
-            title: i18n.t('artists'),
-            headerShown: true
+            ...useStackScreenWithSearchBar(),
+            title: i18n.t('artists')
           }}
         />
       </Stack>
