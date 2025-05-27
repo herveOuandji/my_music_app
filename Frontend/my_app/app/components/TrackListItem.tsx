@@ -10,12 +10,13 @@ import {
   useColorScheme
 } from 'react-native'
 import { Colors } from '@/constants/Colors'
+import { Track } from 'react-native-track-player'
 
 export type TrackListItemProps = {
   /**
    * The track object containing title, optional artist, and optional image.
    */
-  track: { title: string; artist?: string; image?: string }
+  track: Track
 }
 
 const TrackListItem = ({ track }: TrackListItemProps) => {
@@ -32,7 +33,7 @@ const TrackListItem = ({ track }: TrackListItemProps) => {
       >
         <View>
           <Image
-            source={track.image ?? unknownTrackImageUri}
+            source={track.artwork ?? unknownTrackImageUri}
             style={{
               ...styles.trackArtworkImage,
               opacity: isActiveTrack ? 0.6 : 1

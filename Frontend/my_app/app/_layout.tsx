@@ -1,38 +1,50 @@
-import { Stack } from 'expo-router' // Import Stack navigator from Expo Router
-import { StatusBar } from 'expo-status-bar' // Import StatusBar for status bar styling
-import { SafeAreaProvider } from 'react-native-safe-area-context' // Import SafeAreaProvider for safe area handling
+import { useLogTrackPlayerState } from '@/hooks/useLogTrackPlayerState'
+import useSetupTrackPlayer from '@/hooks/useSetupTrackPlayer'
+import { SplashScreen, Stack } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import { useCallback } from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-// Main App component
+SplashScreen.preventAutoHideAsync()
+
 const App = () => {
+  
+
+  const handleTrackLayerLoaded = useCallback(() => {
+    SplashScreen.hideAsync()
+  }, [])
+
+  useSetupTrackPlayer({
+    onLoad: handleTrackLayerLoaded,
+  })
+
+  useLogTrackPlayerState() 
+
   return (
-    // Provides safe area context to the app (handles notches, etc.)
     <SafeAreaProvider>
-      <RootLayout /> {/* Renders the navigation stack */}
-      <StatusBar style="auto" /> {/* Sets the status bar style */}
+      <RootLayout />
+      <StatusBar style="auto" />
     </SafeAreaProvider>
   )
 }
 
-// Root layout for navigation
 const RootLayout = () => {
   return (
     <Stack>
-      {/* Main tab navigator, header is hidden */}
       <Stack.Screen
         name="(tabs)"
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
-      {/* Modal screen, presented as a modal */}
       <Stack.Screen
         name="(modal)"
         options={{
-          presentation: 'modal'
+          presentation: 'modal',
         }}
       />
     </Stack>
   )
 }
 
-export default App // Export the main App component
+export default App
