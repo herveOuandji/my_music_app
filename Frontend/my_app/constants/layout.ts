@@ -7,7 +7,7 @@ const useStackScreenWithSearchBar = (): NativeStackNavigationOptions => {
   const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
 
   return {
-    headerLargeTitle: true, 
+    headerLargeTitle: true,
     headerLargeStyle: {
       backgroundColor: theme.background
     },

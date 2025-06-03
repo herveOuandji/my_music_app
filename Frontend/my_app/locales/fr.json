@@ -3,5 +3,7 @@
   "playlists": "Playlists",
   "artists": "Artistes",
   "songs": "Chansons",
-  "settings": "Paramètres"
+  "settings": "Paramètres",
+  "No songs found": "Aucune chanson trouvée",
+  "No artists found": "Aucun artiste trouvé"
 }

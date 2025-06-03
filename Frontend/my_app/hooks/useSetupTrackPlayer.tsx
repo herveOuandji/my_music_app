@@ -7,7 +7,7 @@ const setupPlayer = async () => {
     waitForBuffer: true
   })
 
-  await TrackPlayer.setVolume(1.0) // Set initial volume to 100%
+  await TrackPlayer.setVolume(0.3) // Set initial volume to 100%
   await TrackPlayer.setRepeatMode(RepeatMode.Queue) // Set repeat mode to Queue
 }
 
@@ -26,8 +26,7 @@ const useSetupTrackPlayer = ({ onLoad }: { onLoad?: () => void }) => {
       }
     }
     initializePlayer()
-  }, [onLoad])
-  return null // This hook does not return anything, it just sets up the player
+  }, [onLoad]) 
 }
 
 export default useSetupTrackPlayer

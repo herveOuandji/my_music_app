@@ -4,7 +4,13 @@ import { useColorScheme, StyleSheet } from 'react-native'
 import { Colors } from '@/constants/Colors'
 import { FontSize } from '@/constants/FontSize'
 import { BlurView } from 'expo-blur'
-import { FontAwesome, MaterialCommunityIcons, Ionicons, FontAwesome6 } from '@expo/vector-icons'
+import {
+  FontAwesome,
+  MaterialCommunityIcons,
+  Ionicons,
+  FontAwesome6
+} from '@expo/vector-icons'
+import FloatingPlayer from '../components/FloatingPlayer'
 
 const TabsLayout = () => {
   const colorScheme = useColorScheme()
@@ -22,68 +28,82 @@ const TabsLayout = () => {
       : 'default'
 
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: theme.tabIconSelected,
-        tabBarInactiveTintColor: theme.tabIconDefault,
-        tabBarLabelStyle: styles.tabBarLabel,
-        tabBarStyle: styles.tabBar,
-        tabBarBackground: () => (
-          <BlurView
-            intensity={95}
-            tint={blurTint}
-            style={[styles.blur, { backgroundColor: blurBackgroundColor }]}
-          />
-        )
-      }}
-    >
-      <Tabs.Screen
-        name="favorites"
-        options={{
-          title: i18n.t('favorites'),
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="heart" size={28} color={color} />
+    <>
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: theme.tabIconSelected,
+          tabBarInactiveTintColor: theme.tabIconDefault,
+          tabBarLabelStyle: styles.tabBarLabel,
+          tabBarStyle: styles.tabBar,
+          tabBarBackground: () => (
+            <BlurView
+              intensity={95}
+              tint={blurTint}
+              style={[styles.blur, { backgroundColor: blurBackgroundColor }]}
+            />
           )
         }}
-      />
-      <Tabs.Screen
-        name="playlists"
-        options={{
-          title: i18n.t('playlists'),
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="playlist-play" size={28} color={color} />
-          )
+      >
+        <Tabs.Screen
+          name="favorites"
+          options={{
+            title: i18n.t('favorites'),
+            tabBarIcon: ({ color }) => (
+              <FontAwesome name="heart" size={28} color={color} />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="playlists"
+          options={{
+            title: i18n.t('playlists'),
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons
+                name="playlist-play"
+                size={28}
+                color={color}
+              />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="(songs)"
+          options={{
+            title: i18n.t('songs'),
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="musical-notes-sharp" size={24} color={color} />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="artists"
+          options={{
+            title: i18n.t('artists'),
+            tabBarIcon: ({ color }) => (
+              <FontAwesome6 name="users-line" size={20} color={color} />
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="settings"
+          options={{
+            title: i18n.t('settings'),
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="settings-sharp" size={22} color={color} />
+            )
+          }}
+        />
+      </Tabs>
+      <FloatingPlayer
+        style={{
+          position: 'absolute',
+          left: 8,
+          right: 8,
+          bottom: 78
         }}
       />
-      <Tabs.Screen
-        name="(songs)"
-        options={{
-          title: i18n.t('songs'),
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="musical-notes-sharp" size={24} color={color} />
-          )
-        }}
-      />
-      <Tabs.Screen
-        name="artists"
-        options={{
-          title: i18n.t('artists'),
-          tabBarIcon: ({ color }) => (
-            <FontAwesome6 name="users-line" size={20} color={color} />
-          )
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: i18n.t('settings'),
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="settings-sharp" size={22} color={color} />
-          )
-        }}
-      />
-    </Tabs>
+    </>
   )
 }
 
