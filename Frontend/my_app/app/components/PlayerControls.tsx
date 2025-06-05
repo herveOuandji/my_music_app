@@ -1,5 +1,5 @@
 import { Colors } from '@/constants/Colors'
-import { FontAwesome6 } from '@expo/vector-icons' 
+import { FontAwesome6 } from '@expo/vector-icons'
 import {
   StyleSheet,
   TouchableOpacity,
@@ -38,7 +38,7 @@ export const PlayPauseButton = ({ style, iconSize }: PlayerButtonProps) => {
   const colorScheme = useColorScheme()
   const isDarkMode = colorScheme === 'dark'
   const theme = isDarkMode ? Colors.dark : Colors.light
-  
+
   const { playing } = useIsPlaying()
 
   return (

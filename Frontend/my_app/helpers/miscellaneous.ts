@@ -7,3 +7,13 @@ export const formatSecondToMinute = (second: number) => {
 
   return `${formatMinutes}:${formatSeconds}`
 }
+
+export const generateTracksListId = (
+  trackListName: string,
+  search?: string
+) => {
+  return search ? `${trackListName}-${search}` : trackListName
+}
+export const generateQueueId = (queueName: string, search?: string) => {
+  return search ? `${queueName}-${search}` : queueName
+}

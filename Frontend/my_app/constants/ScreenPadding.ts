@@ -1,5 +1,5 @@
 
 export const ScreenPadding = Object.freeze({
     
-  horizontal: 24,
+  horizontal: 18,
 });

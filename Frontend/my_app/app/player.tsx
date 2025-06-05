@@ -49,7 +49,10 @@ const PlayerScreen = () => {
   if (!activeTrack) {
     return (
       <View
-        style={[defaultStyles(isDarkMode).container, { justifyContent: 'center' }]}
+        style={[
+          defaultStyles(isDarkMode).container,
+          { justifyContent: 'center' }
+        ]}
       >
         <ActivityIndicator color={theme.icon} />
       </View>

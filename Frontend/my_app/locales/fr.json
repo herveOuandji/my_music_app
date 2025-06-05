@@ -5,5 +5,9 @@
   "songs": "Chansons",
   "settings": "Paramètres",
   "No songs found": "Aucune chanson trouvée",
-  "No artists found": "Aucun artiste trouvé"
+  "No artists found": "Aucun artiste trouvé",
+  "Find in songs" : "Recherche de chansons",
+  "Play": "Lecture",
+  "Shuffle": "Aléatoire",
+  "Find in artists": "Recherche d'artistes"
 }

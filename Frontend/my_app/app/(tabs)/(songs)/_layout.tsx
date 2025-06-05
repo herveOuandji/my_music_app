@@ -7,8 +7,6 @@ import IndexScreen from './index'
 
 const Stack = createNativeStackNavigator()
 
-
-
 const SongsLayout = () => {
   const colorScheme = useColorScheme()
   const isDarkMode = colorScheme === 'dark'
