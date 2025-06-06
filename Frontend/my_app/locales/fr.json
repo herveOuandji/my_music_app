@@ -9,5 +9,8 @@
   "Find in songs" : "Recherche de chansons",
   "Play": "Lecture",
   "Shuffle": "Aléatoire",
-  "Find in artists": "Recherche d'artistes"
+  "Find in artists": "Recherche d'artistes",
+  "Find in playlists": "Recherche de playlists",
+  "No playlists found": "Aucune playlist trouvée",
+  "No favorites found": "Aucun favori trouvé"
 }

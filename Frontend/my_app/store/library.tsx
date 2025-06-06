@@ -83,8 +83,11 @@ export const useArtists = () => {
 
 // Playlists extracted from tracks
 export const usePlaylists = () => {
-  const playlists = useLibraryStore((state) => {
-    return state.tracks.reduce((acc, track) => {
+  const tracks = useLibraryStore((state) => state.tracks)
+  const addToPlaylist = useLibraryStore((state) => state.addToPlaylist)
+
+  const playlists = useMemo(() => {
+    return tracks.reduce((acc, track) => {
       for (const name of track.playlist ?? []) {
         const existing = acc.find((p) => p.name === name)
         if (existing) {
@@ -99,9 +102,7 @@ export const usePlaylists = () => {
       }
       return acc
     }, [] as Playlist[])
-  })
-
-  const addToPlaylist = useLibraryStore((state) => state.addToPlaylist)
+  }, [tracks])
 
   return { playlists, addToPlaylist }
 }

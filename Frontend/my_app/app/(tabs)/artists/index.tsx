@@ -16,7 +16,7 @@ import { artistNameFilter } from '@/helpers/filter'
 import { ScreenPadding } from '@/constants/ScreenPadding'
 import { Image } from 'expo-image'
 import { unknownArtistImageUri } from '@/constants/images'
-import { Link } from 'expo-router' 
+import { Link } from 'expo-router'
 import { FontSize } from '@/constants/FontSize'
 
 const ArtistScreen = () => {
@@ -97,8 +97,7 @@ const ArtistScreen = () => {
     </View>
   )
 }
-const getStyles = (isDarkMode: boolean) => {
-  // const theme = isDarkMode ? Colors.dark : Colors.light
+const getStyles = (isDarkMode: boolean) => { 
   return StyleSheet.create({
     artistItemContainer: {
       flexDirection: 'row',

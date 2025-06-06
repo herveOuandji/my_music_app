@@ -1,78 +1,76 @@
-import { trackTitleFilter } from '@/helpers/filter'
-import { Artist } from '@/helpers/types'
 import useNavigationSearch from '@/hooks/useNavigationSearch'
+import TracksList from './TracksList'
 import i18n from '@/locales'
 import { useMemo } from 'react'
-import TracksList from './TracksList'
+import { Playlist } from '@/helpers/types'
+import { trackTitleFilter } from '@/helpers/filter'
 import { generateTracksListId } from '@/helpers/miscellaneous'
 import { StyleSheet, Text, useColorScheme, View } from 'react-native'
-import { Image } from 'expo-image'
-import { unknownArtistImageUri } from '@/constants/images'
 import { defaultStyles } from '@/styles'
 import { FontSize } from '@/constants/FontSize'
+import { Image } from 'expo-image'
+import { unknownTrackImageUri } from '@/constants/images'
 import { QueueControl } from './QueueControl'
 
-export const ArtistTracksList = ({ artist }: { artist: Artist }) => {
+export const PlaylistTracksList = ({ playlist }: { playlist: Playlist }) => {
   const colorScheme = useColorScheme()
   const isDarkMode = colorScheme === 'dark'
   const styles = getStyles(isDarkMode)
-
   const search = useNavigationSearch({
     searchBarOption: {
       hideWhenScrolling: true,
-      placeholder: i18n.t('Find in songs')
+      placeholder: i18n.t('Find in playlists')
     }
   })
 
-  const filteredArtistTracks = useMemo(() => {
-    return artist.tracks.filter(trackTitleFilter(search))
-  }, [artist.tracks, search])
+  const filteredPlaylistsTracks = useMemo(() => {
+    return playlist.tracks.filter(trackTitleFilter(search))
+  }, [playlist.tracks, search])
 
   return (
     <TracksList
-      id={generateTracksListId(artist.name, search)}
+      id={generateTracksListId(playlist.name, search)}
       scrollEnabled={false}
       hideQueueControls={true}
-      ListHeaderComponentStyle={styles.artworkHeaderContainer}
+      ListHeaderComponentStyle={styles.playlistHeaderContainer}
       ListHeaderComponent={
         <View>
           <View style={styles.artworkImageContainer}>
-            <Image source={unknownArtistImageUri} style={styles.artistImage} />
+            <Image
+              source={playlist.artworkPreview}
+              style={styles.artworkImage}
+            />
           </View>
-          <Text numberOfLines={1} style={styles.artistNameText}>
-            {artist.name}
+          <Text numberOfLines={1} style={styles.playlistNameText}>
+            {playlist.name}
           </Text>
           {search.length === 0 && (
-            <QueueControl
-              tracks={filteredArtistTracks}
-              style={{ paddingTop: 24 }}
-            />
+            <QueueControl style={{ paddingTop: 24 }} tracks={playlist.tracks} />
           )}
         </View>
       }
-      tracks={artist.tracks}
+      tracks={filteredPlaylistsTracks}
     />
   )
 }
-
 const getStyles = (isDarkMode: boolean) => {
   return StyleSheet.create({
-    artworkHeaderContainer: {
+    playlistHeaderContainer: {
       flex: 1,
       marginBottom: 32
     },
     artworkImageContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
-      height: 200
+      height: 300
     },
-    artistImage: {
-      width: '60%',
+    artworkImage: {
+      width: '85%',
       height: '100%',
       resizeMode: 'cover',
-      borderRadius: 128
+      borderRadius: 12
     },
-    artistNameText: {
+    playlistNameText: {
       ...defaultStyles(isDarkMode).text,
       marginTop: 22,
       textAlign: 'center',

@@ -9,5 +9,8 @@
   "Find in songs" : "Find in songs",
   "Play" : "Play",
   "Shuffle": "Shuffle",
-  "Find in artists": "Find in artists"
+  "Find in artists": "Find in artists",
+  "Find in playlists": "Find in playlists",
+  "No playlists found": "No playlists found",
+  "No favorites found": "No favorites found"
 }
