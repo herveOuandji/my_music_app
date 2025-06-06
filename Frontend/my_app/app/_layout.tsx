@@ -8,8 +8,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler' // <-- Cor
 import { useColorScheme } from 'react-native'
 import { Colors } from '@/constants/Colors'
 import i18n from '@/locales'
+import TrackPlayer from 'react-native-track-player'
+import { playbackService } from '@/constants/playbackService'
 
 SplashScreen.preventAutoHideAsync()
+
+TrackPlayer.registerPlaybackService(() => playbackService)
 
 const App = () => {
   const handleTrackLayerLoaded = useCallback(() => {
