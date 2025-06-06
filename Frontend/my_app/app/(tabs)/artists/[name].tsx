@@ -26,7 +26,7 @@ const ArtistDetailScreen = () => {
     <View style={defaultStyles(isDarkMode).container}>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        // style={{ paddingHorizontal: ScreenPadding.horizontal }}
+        style={{ paddingHorizontal: ScreenPadding.horizontal }}
       >
         <ArtistTracksList artist={artist} />
       </ScrollView>

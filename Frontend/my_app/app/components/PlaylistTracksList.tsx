@@ -8,8 +8,7 @@ import { generateTracksListId } from '@/helpers/miscellaneous'
 import { StyleSheet, Text, useColorScheme, View } from 'react-native'
 import { defaultStyles } from '@/styles'
 import { FontSize } from '@/constants/FontSize'
-import { Image } from 'expo-image'
-import { unknownTrackImageUri } from '@/constants/images'
+import { Image } from 'expo-image' 
 import { QueueControl } from './QueueControl'
 
 export const PlaylistTracksList = ({ playlist }: { playlist: Playlist }) => {

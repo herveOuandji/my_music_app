@@ -5,6 +5,9 @@ import { StatusBar } from 'expo-status-bar'
 import { useCallback } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { GestureHandlerRootView } from 'react-native-gesture-handler' // <-- Correction ici
+import { useColorScheme } from 'react-native'
+import { Colors } from '@/constants/Colors'
+import i18n from '@/locales'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -30,6 +33,9 @@ const App = () => {
 }
 
 const RootLayout = () => {
+  const colorScheme = useColorScheme()
+  const theme = colorScheme === 'dark' ? Colors.dark : Colors.light
+
   return (
     <Stack>
       <Stack.Screen
@@ -50,9 +56,16 @@ const RootLayout = () => {
       />
 
       <Stack.Screen
-        name="(modal)"
+        name="(modal)/addToPlaylist"
         options={{
-          presentation: 'modal'
+          presentation: 'modal',
+          headerStyle: {
+            backgroundColor: theme.background
+          },
+          headerTitle: i18n.t('Add to playlist'),
+          headerTitleStyle: {
+            color: theme.text
+          }
         }}
       />
     </Stack>

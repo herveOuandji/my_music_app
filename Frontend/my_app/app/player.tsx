@@ -22,6 +22,7 @@ import { PlayerVolumeBar } from './components/PlayerVolumeBar'
 import { PlayerRepeatToggle } from './components/PlayerRepeatToggle'
 import { usePlayerBackground } from '@/hooks/usePlayerBackground'
 import { BlurView } from 'expo-blur'
+import { useTrackPlayerFavorite } from '@/hooks/useTrackPlayerFavorite'
 
 const PlayerScreen = () => {
   const colorScheme = useColorScheme()
@@ -43,8 +44,7 @@ const PlayerScreen = () => {
     ? { uri: activeTrack!.artwork }
     : unknownTrackImageUri
 
-  const isFavorite = false
-  const toggleFavorite = () => {}
+  const {isFavorite, toggleFavorite} = useTrackPlayerFavorite()
 
   if (!activeTrack) {
     return (
@@ -115,7 +115,7 @@ const PlayerScreen = () => {
                   <FontAwesome
                     name={isFavorite ? 'heart' : 'heart-o'}
                     size={20}
-                    color={isFavorite ? theme.tabIconSelected : theme.icon}
+                    color={isFavorite ? theme.tabIconSelected : theme.text}
                     style={{ marginHorizontal: 14 }}
                     onPress={toggleFavorite}
                   />

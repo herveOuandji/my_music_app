@@ -12,5 +12,8 @@
   "Find in artists": "Find in artists",
   "Find in playlists": "Find in playlists",
   "No playlists found": "No playlists found",
-  "No favorites found": "No favorites found"
+  "No favorites found": "No favorites found",
+  "Add to playlist" : "Add to playlist" ,
+  "Remove from favorites": "Remove from favorites",
+  "Add to favorites": "Add to favorites"
 }

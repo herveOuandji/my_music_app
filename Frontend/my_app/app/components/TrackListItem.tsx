@@ -13,6 +13,8 @@ import {
 import { Colors } from '@/constants/Colors'
 import { Track, useActiveTrack, useIsPlaying } from 'react-native-track-player'
 import { Entypo, Ionicons } from '@expo/vector-icons'
+import { TrackShortcutsMenu } from './TrackShortcutsMenu'
+import { StopPropagation } from './utils/StopPropagation'
 // import LoaderKit from 'react-native-loader-kit'
 
 export type TrackListItemProps = {
@@ -29,7 +31,7 @@ const TrackListItem = ({
 }: TrackListItemProps) => {
   const { playing } = useIsPlaying()
   const isActiveTrack = useActiveTrack()?.url === track.url
-  
+
   const colorScheme = useColorScheme()
   const isDarkMode = colorScheme === 'dark'
   const theme = isDarkMode ? Colors.dark : Colors.light
@@ -56,11 +58,11 @@ const TrackListItem = ({
                 size={24}
                 color={theme.icon}
               />
-              // <LoaderKit 
-              // name='LineScaleParty'
-              //   style={styles.trackPlayingIconIndicator} 
-              //   color={theme.icon}  />
             ) : (
+              // <LoaderKit
+              // name='LineScaleParty'
+              //   style={styles.trackPlayingIconIndicator}
+              //   color={theme.icon}  />
               <Ionicons
                 name="play"
                 style={styles.trackPauseIconIndicator}
@@ -97,7 +99,18 @@ const TrackListItem = ({
               </Text>
             )}
           </View>
-          <Entypo name="dots-three-horizontal" size={18} color={theme.icon} />
+
+          <StopPropagation>
+            <TrackShortcutsMenu track={track}>
+              <View style={{ padding: 6 }}>
+                <Entypo
+                  name="dots-three-horizontal"
+                  size={15}
+                  color={theme.icon}
+                />
+              </View>
+            </TrackShortcutsMenu>
+          </StopPropagation>
         </View>
       </View>
     </TouchableHighlight>
